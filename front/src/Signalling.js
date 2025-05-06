@@ -1,6 +1,6 @@
 // frontend/src/signalling.js
 export function createSignaling(onSignal, onOpenCallback) {
-  const SIGNALING_SERVER = "ws://localhost:3000";
+  const SIGNALING_SERVER = "ws://192.168.55.24:3000";
   const ws = new WebSocket(SIGNALING_SERVER);
   let isOpen = false;
   const pending = [];
