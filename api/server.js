@@ -14,10 +14,15 @@ wss.on("connection", (ws) => {
   console.log("Client connected:", clients.length);
 
   ws.on("message", (message) => {
-    // Broadcast to all other clients
+    const msgText =
+      typeof message === "string" ? message : message.toString("utf8");
+    console.log("[WS received]", msgText);
+
+    // Broadcast to all *other* clients
     clients.forEach((client) => {
       if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message);
+        console.log("[WS sending]", msgText);
+        client.send(msgText);
       }
     });
   });
